@@ -10,7 +10,6 @@ class agarioSocket extends handle {
         super();
         this.url = '';
         this.socket = null;
-        this.socketOpen = false;
     }
     connect(url) {
         this.resetconnection();
@@ -26,7 +25,6 @@ class agarioSocket extends handle {
     handleOpen() {
         this.sendPacket254();
         this.sendPacket255();
-        this.socketOpen = true;
         console.log("connected...");
     }
     handleMessage(message) {
@@ -54,7 +52,7 @@ class agarioSocket extends handle {
         this.read(opcode, view);
     }
     sendPacket(packet) {
-        if (this.socketOpen) {
+        if (this.isOnline) {
             packet = formula.xorBuffer(packet, key.decrypt);
             key.decrypt = formula.rotateKey(key.decrypt);
         };
