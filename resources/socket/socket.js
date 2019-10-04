@@ -71,9 +71,9 @@ class agarioSocket extends handle {
             this.socket.close && this.socket.close();
             this.socket = null;
         };
-        this.clearevents();
+        this.clear();
     }
-    clearevents() {
+    clear() {
         key.reset();
         world.cells.clear();
         world.ids.clear();
